@@ -18,15 +18,26 @@
 
 <body>
   <main class="mt-5">
-    <div class="container">
-       <div>
-        <h1>Login</h1>
-        <input id="username" type="text" placeholder="Usuario">
-        <input id="password" type="password" placeholder="Contraseña">
-        <button onclick=comprobar()>Ingresar</button>
-      </div>
-      </div>
-    </div>
+    <div class="container login__container">
+          <h1 class="h3 mb-3 fw-normal">Iniciar sesion</h1>
+      
+          <div class="form-floating">
+            <input type="text" class="form-control" id="username" placeholder="Usuario">
+            <label for="floatingInput">Usuario</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control" id="password" placeholder="Contraseña">
+            <label for="floatingPassword">Contraseña</label>
+          </div>
+      
+          <div class="checkbox mb-3">
+            <label>
+              <input type="checkbox" value="remember-me"> Recordarme?
+            </label>
+          </div>
+          <button class="w-100 btn btn-lg btn-primary" onclick=comprobar()>Ingresar</button>
+          <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+          
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
@@ -37,5 +48,4 @@
   </footer>
   <script src="js/login.js"></script>
 </body>
-
 </html>
