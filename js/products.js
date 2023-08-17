@@ -7,32 +7,25 @@ const container = document.getElementById("container");
 function showData(dataArray) {
 
   for (const item of dataArray) {
-    container.innerHTML += `<div><p> ${item.name} ${item.cost} ${item.description} ${item.soldCount}  </p>
-    <img src="${item.image}"></div>`;
+    container.innerHTML += `<div class="list-group-item list-group-item-action cursor-active">
+    <div class="row">
+        <div class="col-3">
+            <img src="${item.image}" alt="${item.description}" class="img-thumbnail">
+        </div>
+        <div class="col">
+            <div class="d-flex w-100 justify-content-between">
+                <h4 class="mb-1">${item.name} - USD ${item.cost}</h4>
+                <small class="text-muted">${item.soldCount} vendidos</small>
+            </div>
+            <p class="mb-1">${item.description}</p>
+        </div>
+    </div>
+</div>`;
   }
 }
+
+
+
 fetch(DATA_URL)
 .then(response => response.json())
 .then(data => showData(data.products))
-
-// fetch("https://japceibal.github.io/emercado-api/cats_products/101.json")
-//   .then(res => res.json())
-//   .then(data => {
-//     data.forEach(item => {
-//       const card = itemCardTemplate.content.cloneNode(true).children[0]
-//       console.log(item)
-//     })
-//     users = data.map(item => {
-//       const card = itemCardTemplate.content.cloneNode(true).children[0]
-//       const header = card.querySelector("h5")
-//       const imgage = card.querySelector("img")
-//       const body = card.querySelector("p")
-
-//       imgage.setAttribute('img', item.image)
-//       header.textContent = item.name
-//       body.textContent = item.cost, item.description
-//       itemCardContainer.append(card)
-//       return { name: item.name, precio: item.cost, img: item.img, element: card }
-      
-//     })
-//   })
