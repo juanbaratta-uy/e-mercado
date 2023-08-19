@@ -192,3 +192,7 @@ a.custom-card:hover {
 .login__container{
   width: 30%;
 }
+
+#container__products{
+  text-align: center;
+}
