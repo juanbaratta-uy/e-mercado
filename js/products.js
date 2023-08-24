@@ -1,8 +1,16 @@
 
-const DATA_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json"; 
+const DATA_URL = "https://japceibal.github.io/emercado-api/cats_products/"+localStorage.getItem("catID")+".json"; 
 
 const container = document.getElementById("container"); 
 
+document.addEventListener("DOMContentLoaded", function() {
+    fetch(DATA_URL)
+    .then(response => response.json())
+    .then(data => { 
+        showData(data.products);
+        document.getElementById("nombreCategoria").innerHTML += data.catName;
+    })
+})
 
 function showData(dataArray) {
 
@@ -26,6 +34,4 @@ function showData(dataArray) {
 
 
 
-fetch(DATA_URL)
-.then(response => response.json())
-.then(data => showData(data.products))
+
