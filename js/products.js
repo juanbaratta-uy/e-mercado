@@ -31,7 +31,3 @@ function showData(dataArray) {
 </div>`;
   }
 }
-
-
-
-
