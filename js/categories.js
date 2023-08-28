@@ -141,3 +141,10 @@ document.addEventListener("DOMContentLoaded", function(e){
         showCategoriesList();
     });
 });
+
+document.addEventListener('DOMContentLoaded', function (){
+    let usuario = localStorage.getItem('user');
+    if (usuario=="" || usuario==null){
+     location.href="login.html";
+    }
+})

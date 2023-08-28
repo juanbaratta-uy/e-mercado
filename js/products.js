@@ -24,8 +24,7 @@ function showData(dataArray) {
   }
 }
 
-
-
 fetch(DATA_URL)
 .then(response => response.json())
 .then(data => showData(data.products))
+
