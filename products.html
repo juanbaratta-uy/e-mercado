@@ -36,11 +36,27 @@
       </div>
     </div>
   </nav>
-  <main class="pb-5 container" id="container">
+  <main class="pb-5 container">
     <div class="container" id="container__products">
       <h1>Productos</h1>
-      <h4>Veras aqui todos los productos de la categoría <b>Autos</b></h4>
+      <h4>Veras aqui todos los productos de la categoría <b id="nombreCategoria"></b></h4>
     </div>
+    <div class="row">
+      <div class="col text-end">
+        <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
+          <label class="btn btn-light" id="sortAsc">
+            <input type="radio" class="btn-check" name="options"><i class="fas fa-sort-amount-down mr-1"></i>
+          </label>
+          
+          <label class="btn btn-light" id="sortDesc">
+            <input type="radio" class="btn-check" name="options" ><i class="fas fa-sort-amount-up mr-1"></i>
+          </label>
+
+          <label class="btn btn-light" id="sortByCount">
+            <input type="radio" class="btn-check" name="options"  checked><i class="fas fa-sort-amount-down mr-1"></i>Rel.
+          </label>
+        </div>
+        <div id="container"></div>
   </main>
   <footer class="text-muted">
     <div class="container">
