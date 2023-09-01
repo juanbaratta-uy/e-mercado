@@ -18,12 +18,15 @@ document.addEventListener("DOMContentLoaded", function() {
      document.getElementById("sortDesc").addEventListener("click", function(){
         ordenarDesc(dataArray)
      });
+     document.getElementById("sortBySold").addEventListener("click", function(){
+        ordenarBySold(dataArray)
+     });
 
      function ordenarAsc(array){
         let result = [];
             result = array.sort(function(a, b) {
-                if ( a.cost < b.cost ){ return -1;}
-                if ( a.cost > b.cost ){ return 1;}
+                if ( a.cost > b.cost ){ return -1;}
+                if ( a.cost < b.cost ){ return 1;}
                 return 0;
             });
             showData(result);
@@ -32,8 +35,18 @@ document.addEventListener("DOMContentLoaded", function() {
         function ordenarDesc(array){
             let result = [];
                 result = array.sort(function(a, b) {
-                    if ( a.cost > b.cost ){ return -1;}
-                    if ( a.cost < b.cost ){ return 1;}
+                    if ( a.cost < b.cost ){ return -1;}
+                    if ( a.cost > b.cost ){ return 1;}
+                    return 0;
+                });
+                showData(result);
+            }
+
+            function ordenarBySold(array){
+                let result = [];
+                result = array.sort(function(a, b){
+                    if ( a.soldCount > b.soldCount ){ return -1;}
+                    if ( a.soldCount < b.soldCount ){ return 1;}
                     return 0;
                 });
                 showData(result);
