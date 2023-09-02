@@ -1,9 +1,12 @@
+let DATA_URL = "https://japceibal.github.io/emercado-api/cats_products/"+localStorage.getItem("catID")+".json"
 
-const DATA_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json"; 
- 
 document.addEventListener("DOMContentLoaded", function() {
     let container = document.getElementById("container");
     let dataArray = [];
+    let usuario = localStorage.getItem('user');
+    if (usuario=="" || usuario==null){
+     location.href="login.html";
+    }
 
     fetch(DATA_URL)
     .then(response => response.json())
@@ -71,7 +74,9 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>`;
         }
       }
-})
+
+      document.getElementById("displayUsuario").innerHTML = localStorage.getItem("user");
+    });
 
 
 

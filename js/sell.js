@@ -28,6 +28,11 @@ function updateTotalCosts(){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+    let usuario = localStorage.getItem('user');
+    document.getElementById("displayUsuario").innerHTML = localStorage.getItem("user");
+    if (usuario=="" || usuario==null){
+     location.href="login.html";
+    }
     document.getElementById("productCountInput").addEventListener("change", function(){
         productCount = this.value;
         updateTotalCosts();

@@ -18,4 +18,6 @@ document.addEventListener('DOMContentLoaded', function (){
     if (usuario=="" || usuario==null){
      location.href="login.html";
     }
-})
+
+    document.getElementById("displayUsuario").innerHTML = localStorage.getItem("user");
+    });
