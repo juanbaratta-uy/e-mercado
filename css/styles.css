@@ -196,3 +196,11 @@ a.custom-card:hover {
 #container__products{
   text-align: center;
 }
+
+p{
+  text-align: left;
+}
+
+#nombre{
+  width: 150px;
+}

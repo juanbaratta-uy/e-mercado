@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function() {
                   <div class="d-flex w-100 justify-content-between">
                       <h4 class="mb-1">${item.name} - USD ${item.cost}</h4>
                       <small class="text-muted">${item.soldCount} vendidos</small>
-                  </div>
+                  </div>    
                   <p class="mb-1">${item.description}</p>
               </div>
           </div>
@@ -76,7 +76,45 @@ document.addEventListener("DOMContentLoaded", function() {
       }
 
       document.getElementById("displayUsuario").innerHTML = localStorage.getItem("user");
+
+      document.getElementById("rangeFilterCount").addEventListener("click", function(){
+        let precioMaximo = document.getElementById('rangeFilterCountMax').value;
+        let precioMinimo = document.getElementById('rangeFilterCountMin').value;
+        function dentroDelRango(elemento) {
+            if((precioMinimo == null || precioMinimo == "") && (precioMaximo == null || precioMaximo == "")){
+               return true;
+            }
+            else if(precioMinimo == null || precioMinimo == ""){
+                return elemento.cost <= precioMaximo;
+            }
+            else if(precioMaximo == null || precioMaximo == ""){
+                return elemento.cost >= precioMinimo;
+            }
+            else return elemento.cost <= precioMaximo && elemento.cost >= precioMinimo;
+          }
+          showData(dataArray.filter(dentroDelRango));
+     });
+
+     document.getElementById("clearRangeFilter").addEventListener("click", function(){
+        document.getElementById("rangeFilterCountMin").value = "";
+        document.getElementById("rangeFilterCountMax").value = "";
+
+        minCount = undefined;
+        maxCount = undefined;
+
+        showData(dataArray);
     });
+    document.getElementById('nombre').addEventListener('input', function(){
+        let nombre = document.getElementById('nombre').value.toLowerCase();
+        let datos = [];
 
+        for (const item of dataArray) {
+            if(item.name.toLowerCase().match(nombre)){
+                datos.push(item);
+                showData(datos);
+            }
 
+        }
+    });
+});
 
