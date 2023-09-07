@@ -204,3 +204,18 @@ p{
 #nombre{
   width: 150px;
 }
+
+.contenedorImagenes{
+  display: flex;
+}
+
+.img{
+  width: 300px;
+  border: solid #c0c2c4 1px;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.nombreProducto{
+  font-size: 32px;
+}
