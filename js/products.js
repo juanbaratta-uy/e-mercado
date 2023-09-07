@@ -1,5 +1,10 @@
 let DATA_URL = "https://japceibal.github.io/emercado-api/cats_products/"+localStorage.getItem("catID")+".json"
 
+function setProductsId(id) {
+    localStorage.setItem("ProID", id);
+    window.location = "product-info.html"
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     let container = document.getElementById("container");
     let dataArray = [];
@@ -55,10 +60,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 showData(result);
             }
 
+            
+
      function showData(dataArray) {
         container.innerHTML = "";
         for (const item of dataArray) {
-          container.innerHTML += `<div class="list-group-item list-group-item-action cursor-active">
+          container.innerHTML += `
+          <div class="list-group-item list-group-item-action cursor-active" onclick="setProductsId(${item.id})">
           <div class="row">
               <div class="col-3">
                   <img src="${item.image}" alt="${item.description}" class="img-thumbnail">
@@ -116,5 +124,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         }
     });
+
+    
 });
 
