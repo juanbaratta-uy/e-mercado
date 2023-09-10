@@ -7,6 +7,7 @@ function setProductsId(id) {
 
 document.addEventListener("DOMContentLoaded", function() {
     let container = document.getElementById("container");
+    let cajaComentarios = document.getElementById('cajaComentarios');
     let dataArray = [];
     let usuario = localStorage.getItem('user');
     if (usuario=="" || usuario==null){
@@ -80,6 +81,16 @@ document.addEventListener("DOMContentLoaded", function() {
               </div>
           </div>
       </div>`;
+        }
+      }
+
+      function showComentarios(dataArray){
+        for (const item of dataArray){
+            cajaComentarios.innerHTML = `
+            <div>
+                <p><b></b> - ${item.name} - </p>
+                <p>${item.description}</p> 
+            </div>`
         }
       }
 
