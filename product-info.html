@@ -61,6 +61,32 @@
     <div>
       <h2>Comentarios</h2>
       <div id="cajaComentarios"></div>
+      <h2>Comentar</h2>
+      <form>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="commentDescription">Tu opinion: </label>
+            <textarea name="coomentDescription" class="form-control" id="commentDescription"></textarea>
+        </div>
+        <div class="row">
+          <label for="commentScore">Tu puntuacion: </label>
+          <div class="col-md-1 mb-3">
+            <select name="commentScore" class="custom-select form-select d-block w-100" id="commentScore">
+              <option value="">Elija la puntuacion...</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+            <div class="invalid-feedback">
+              Por favor ingresa una puntuacion válida.
+            </div>
+            <br>
+            <div>
+            <button class="btn btn-primary">Enviar</button>
+          </div>
+      </form>
     </div>
     </div>
   </main>
