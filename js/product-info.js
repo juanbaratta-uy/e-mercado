@@ -1,6 +1,18 @@
 let DATA_URL = "https://japceibal.github.io/emercado-api/products/"+localStorage.getItem("ProID")+".json"
 let DATA_COMMENTS = "https://japceibal.github.io/emercado-api/products_comments/"+localStorage.getItem("ProID")+".json"
 
+function showData(data) {
+    document.getElementById('nombre').innerHTML = data.name;
+    document.getElementById('precio').innerHTML = data.currency + " "+ data.cost;
+    document.getElementById('descripcion').innerHTML = data.description;
+    document.getElementById('categoria').innerHTML = data.category;
+    document.getElementById('vendidos').innerHTML = data.soldCount;
+    document.getElementById('img1').src = data.images[0];
+    document.getElementById('img2').src = data.images[1];
+    document.getElementById('img3').src = data.images[2];
+    document.getElementById('img4').src = data.images[3];
+    }
+
 document.addEventListener('DOMContentLoaded', function (){
     let cajaComentarios = document.getElementById('cajaComentarios');
     let usuario = localStorage.getItem('user');
@@ -19,25 +31,16 @@ document.addEventListener('DOMContentLoaded', function (){
         .then(response => response.json())
         .then(data => {
             showComentarios(data);
+            localStorage.setItem("misComentarios", JSON.stringify(data));
         })
 
-        function showData(data) {
-            document.getElementById('nombre').innerHTML = data.name;
-            document.getElementById('precio').innerHTML = data.currency + " "+ data.cost;
-            document.getElementById('descripcion').innerHTML = data.description;
-            document.getElementById('categoria').innerHTML = data.category;
-            document.getElementById('vendidos').innerHTML = data.soldCount;
-            document.getElementById('img1').src = data.images[0];
-            document.getElementById('img2').src = data.images[1];
-            document.getElementById('img3').src = data.images[2];
-            document.getElementById('img4').src = data.images[3];
-            }
-
-    document.getElementById("displayUsuario").innerHTML = localStorage.getItem("user");
+     document.getElementById("displayUsuario").innerHTML = localStorage.getItem("user");
     });
 
 
     function showComentarios(dataArray){
+        cajaComentarios.innerHTML = "";
+        
         for (const item of dataArray){
             cajaComentarios.innerHTML += `
             <div class="list-group-item list-group-item-action cursor-active">
@@ -65,3 +68,43 @@ document.addEventListener('DOMContentLoaded', function (){
 
     //     
       }
+function diaDeHoy() {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    var tiempo = today.getHours()+":"+today.getMinutes() + ":" + today.getSeconds();
+
+    return (yyyy + '-' + mm + '-' + dd + " " + tiempo);
+}
+
+
+
+
+function comentar() {
+    let misComentarios = JSON.parse(localStorage.getItem("misComentarios"));
+    miDescription = document.getElementById("commentDescription").value;
+    miScore = document.getElementById("commentScore").value;
+
+    comentarioNuevo = {
+        user: localStorage.getItem("user"),
+        dateTime: diaDeHoy(),
+        description: miDescription,
+        score: miScore
+    };
+
+    misComentarios.push(comentarioNuevo);
+    localStorage.setItem("misComentarios", JSON.stringify (misComentarios));
+    console.log(localStorage.getItem("misComentarios"));
+
+    showComentarios(misComentarios);
+}
+
+function comentarioValido() {
+    miScore = document.getElementById("commentScore").value;
+    if (miScore === "") {
+        alert("Elija una puntuación válida");
+    } else {
+        comentar();
+    }
+}
