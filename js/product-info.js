@@ -78,9 +78,6 @@ function diaDeHoy() {
     return (yyyy + '-' + mm + '-' + dd + " " + tiempo);
 }
 
-
-
-
 function comentar() {
     let misComentarios = JSON.parse(localStorage.getItem("misComentarios"));
     miDescription = document.getElementById("commentDescription").value;
@@ -98,6 +95,9 @@ function comentar() {
     console.log(localStorage.getItem("misComentarios"));
 
     showComentarios(misComentarios);
+
+    document.getElementById("commentDescription").value = "";
+    document.getElementById("commentScore").value = "";
 }
 
 function comentarioValido() {
