@@ -17,6 +17,9 @@ function showData(data) {
 document.addEventListener('DOMContentLoaded', function (){
     let cajaComentarios = document.getElementById('cajaComentarios');
     let usuario = localStorage.getItem('user');
+    const toggle = document.getElementById('toggleDark');
+    const body = document.querySelector('body');
+
     if (usuario=="" || usuario==null){
      location.href="login.html";
     }
@@ -41,6 +44,19 @@ document.addEventListener('DOMContentLoaded', function (){
         })
 
      document.getElementById("displayUsuario").innerHTML = localStorage.getItem("user");
+
+     toggle.addEventListener('click', function(){
+        this.classList.toggle('bi-moon');
+        if(this.classList.toggle('bi-brightness-high-fill')){
+            body.style.background = 'white';
+            body.style.color = 'black';
+            body.style.transition = '2s';
+        }else{
+            body.style.background = 'black';
+            body.style.color = 'white';
+            body.style.transition = '2s';
+        }
+    });
     });
 
     function showRelatedProducts(dataArray){
@@ -123,3 +139,6 @@ function comentarioValido() {
         comentar();
     }
 }
+
+
+

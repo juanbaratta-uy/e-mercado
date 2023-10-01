@@ -235,3 +235,11 @@ p{
 .relacionados p{
   text-align: center;
 }
+
+i{
+  font-size: 25px;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  position: relative;
+  left:40%;
+}
