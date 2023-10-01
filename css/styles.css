@@ -236,6 +236,10 @@ p{
   text-align: center;
 }
 
+.relacionados :hover{
+  cursor: pointer;
+}
+
 i{
   font-size: 25px;
   cursor: pointer;

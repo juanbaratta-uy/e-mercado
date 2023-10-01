@@ -75,13 +75,14 @@ document.addEventListener('DOMContentLoaded', function (){
     function showRelatedProducts(dataArray){
         let proID = localStorage.getItem('ProID').trim();
         let filteredProducts = dataArray.products.filter(product => product.id !== parseInt(proID));
+        localStorage.setItem('product1', filteredProducts[0].id)
+        localStorage.setItem('product2', filteredProducts[1].id)
         document.getElementById('imgRelacionado1').src = filteredProducts[0].image;
         document.getElementById('imgRelacionado2').src = filteredProducts[1].image;
         document.getElementById('nombreRelacionado1').innerHTML = filteredProducts[0].name;
         document.getElementById('nombreRelacionado2').innerHTML = filteredProducts[1].name;
         
     }
-
 
     function showComentarios(dataArray){
         cajaComentarios.innerHTML = "";
@@ -151,6 +152,19 @@ function comentarioValido() {
         comentar();
     }
 }
+
+function redirigirRelacionado(value){
+    let product1 = localStorage.getItem('product1')
+    let product2 = localStorage.getItem('product2')
+    if(value === 1){
+        localStorage.setItem('ProID', product1)
+        window.location = "product-info.html"
+    }
+    else{
+        localStorage.setItem('ProID', product2)
+        window.location = "product-info.html";
+    }
+};
 
 
 
