@@ -1,9 +1,10 @@
-let DATA_URL = "https://japceibal.github.io/emercado-api/products/"+localStorage.getItem("ProID")+".json"
-let DATA_COMMENTS = "https://japceibal.github.io/emercado-api/products_comments/"+localStorage.getItem("ProID")+".json"
+let DATA_URL = "https://japceibal.github.io/emercado-api/products/"+localStorage.getItem("ProID")+".json";
+let DATA_COMMENTS = "https://japceibal.github.io/emercado-api/products_comments/"+localStorage.getItem("ProID")+".json";
+let PRODUCTS = "https://japceibal.github.io/emercado-api/cats_products/"+localStorage.getItem("catID")+".json";
 
 function showData(data) {
     document.getElementById('nombre').innerHTML = data.name;
-    document.getElementById('precio').innerHTML = data.currency + " "+ data.cost;
+    document.getElementById('precio').innerHTML = data.currency + " " + data.cost;
     document.getElementById('descripcion').innerHTML = data.description;
     document.getElementById('categoria').innerHTML = data.category;
     document.getElementById('vendidos').innerHTML = data.soldCount;
@@ -16,7 +17,6 @@ function showData(data) {
 document.addEventListener('DOMContentLoaded', function (){
     let cajaComentarios = document.getElementById('cajaComentarios');
     let usuario = localStorage.getItem('user');
-    let proID = localStorage.getItem('ProID');
     if (usuario=="" || usuario==null){
      location.href="login.html";
     }
@@ -34,8 +34,24 @@ document.addEventListener('DOMContentLoaded', function (){
             localStorage.setItem("misComentarios", JSON.stringify(data));
         })
 
+        fetch(PRODUCTS)
+        .then(response => response.json())
+        .then(productsArray => {
+            showRelatedProducts(productsArray);
+        })
+
      document.getElementById("displayUsuario").innerHTML = localStorage.getItem("user");
     });
+
+    function showRelatedProducts(dataArray){
+        let proID = localStorage.getItem('ProID').trim();
+        let filteredProducts = dataArray.products.filter(product => product.id !== parseInt(proID));
+        document.getElementById('imgRelacionado1').src = filteredProducts[0].image;
+        document.getElementById('imgRelacionado2').src = filteredProducts[1].image;
+        document.getElementById('nombreRelacionado1').innerHTML = filteredProducts[0].name;
+        document.getElementById('nombreRelacionado2').innerHTML = filteredProducts[1].name;
+        
+    }
 
 
     function showComentarios(dataArray){
@@ -92,7 +108,6 @@ function comentar() {
 
     misComentarios.push(comentarioNuevo);
     localStorage.setItem("misComentarios", JSON.stringify (misComentarios));
-    console.log(localStorage.getItem("misComentarios"));
 
     showComentarios(misComentarios);
 

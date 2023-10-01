@@ -207,6 +207,8 @@ p{
 
 .contenedorImagenes{
   display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
 .img{
@@ -218,4 +220,18 @@ p{
 
 .nombreProducto{
   font-size: 32px;
+}
+
+.contenedorRelacionados{
+  display: flex;
+}
+
+.relacionados{
+  border: solid #c0c2c4 1px;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.relacionados p{
+  text-align: center;
 }
