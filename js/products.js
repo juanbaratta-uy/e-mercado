@@ -84,16 +84,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       }
 
-      function showComentarios(dataArray){
-        for (const item of dataArray){
-            cajaComentarios.innerHTML = `
-            <div>
-                <p><b></b> - ${item.name} - </p>
-                <p>${item.description}</p> 
-            </div>`
-        }
-      }
-
       document.getElementById("displayUsuario").innerHTML = localStorage.getItem("user");
 
       document.getElementById("rangeFilterCount").addEventListener("click", function(){

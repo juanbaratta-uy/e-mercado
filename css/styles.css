@@ -247,3 +247,25 @@ i{
   position: relative;
   left:40%;
 }
+
+.container-carrito{
+  text-align: center;
+}
+
+.carrito{
+  display: flex;
+  justify-content: center;
+}
+
+.carrito table{
+  text-align: center;
+  border-bottom: 1px solid black;
+  margin: 25px;
+}
+
+.carrito th{
+  padding: 10px 100px;
+  margin: 10px;
+}
+
+
