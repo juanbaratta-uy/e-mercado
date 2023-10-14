@@ -166,5 +166,22 @@ function redirigirRelacionado(value){
     }
 };
 
-
-
+function comprarProducto(){
+    if(localStorage.getItem('Carrito') === null) {
+        fetch(DATA_URL)
+        .then(response => response.json())
+        .then(data => { 
+            localStorage.setItem('Carrito', JSON.stringify([data])); 
+        });
+        window.location = "cart.html";
+    } else {
+        let Carrito = JSON.parse(localStorage.getItem('Carrito')); 
+        fetch(DATA_URL)
+        .then(response => response.json())
+        .then(data => { 
+            Carrito.push(data); 
+            localStorage.setItem('Carrito', JSON.stringify(Carrito)); 
+        });
+        window.location = "cart.html";
+    }
+}

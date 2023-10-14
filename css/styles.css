@@ -252,20 +252,14 @@ i{
   text-align: center;
 }
 
-.carrito{
+#divTitulo{
   display: flex;
-  justify-content: center;
 }
 
-.carrito table{
-  text-align: center;
+.table td{
   border-bottom: 1px solid black;
-  margin: 25px;
 }
 
-.carrito th{
-  padding: 10px 100px;
-  margin: 10px;
+.table input{
+  width: 75px;
 }
-
-
