@@ -205,14 +205,7 @@ p{
   width: 500px;
 }
 
-.contenedorImagenes{
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
-
 .img{
-  width: 300px;
   border: solid #c0c2c4 1px;
   border-radius: 5px;
   margin: 10px;
@@ -222,22 +215,19 @@ p{
   font-size: 32px;
 }
 
-.contenedorRelacionados{
-  display: flex;
-}
-
-.relacionados{
-  border: solid #c0c2c4 1px;
-  border-radius: 5px;
-  margin: 10px;
-}
-
 .relacionados p{
   text-align: center;
 }
 
 .relacionados :hover{
   cursor: pointer;
+}
+
+.relacionados{
+  border: solid #c0c2c4 1px;
+  border-radius: 5px;
+  margin: 10px;
+
 }
 
 i{
@@ -263,3 +253,13 @@ i{
 .table input{
   width: 75px;
 }
+
+#comprobar{
+  width: 150px;
+  height: 50px;
+}
+
+.form-check{
+  text-align: left;
+  padding-left: 0;
+  }
