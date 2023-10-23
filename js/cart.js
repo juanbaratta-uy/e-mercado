@@ -9,17 +9,9 @@ document.addEventListener('DOMContentLoaded', function (){
     if (usuario=="" || usuario==null){
      location.href="login.html";
     }
-
-    fetch(DATA_URL)
-    .then(response => response.json())
-    .then(data => { 
-        let productoPrecargado = data.articles
-        mostrarPrecargado(productoPrecargado[0]);
-    })
-
     document.getElementById("displayUsuario").innerHTML = localStorage.getItem("user");
-
     showData(dataArray);
+    recalcular();
 });
 
 
@@ -32,6 +24,11 @@ function recalcular(){
     resultados[i].innerHTML = subtotal.toFixed(2); 
     total += subtotal; 
 }
+let envio = mostrarSeleccion(total)
+let final = envio + total;
+document.getElementById('subtotal').innerHTML = `USD ${total}`;
+document.getElementById('envio').innerHTML = `USD ${envio.toFixed(0)}`;
+document.getElementById('total').innerHTML = `USD ${final.toFixed(0)}`;
 };
 
 function showData(data){
@@ -41,19 +38,20 @@ function showData(data){
     <td><img src='${item.images[0]}' width='75px'></td>
     <td><span>${item.name}</span></td>
     <td>${item.currency} <span class='precios'>${item.cost}</span></td>
-    <td><input type='number' placeholder='1' min='0' class='cantidades' onchange='recalcular()'></td>
+    <td><input type='number' placeholder='1' min='0' value='1' class='cantidades' onchange='recalcular()'></td>
     <td><span class='resultados'></span></td>
     </tr>`; 
     }
 }
 
-function mostrarPrecargado(data){
-    let tabla = document.getElementById('tabla-articulos');
-    tabla.innerHTML += `<tr>
-        <td><img src='${data.image}' width='75px'></td>
-        <td><span>${data.name}</span></td>
-        <td>${data.currency} <span class='precios'>${data.unitCost}</span></td>
-         <td><input type='number' placeholder='1' class='cantidades' onchange='recalcular()'></td>
-        <td><span class='resultados'></span></td>
-        </tr>`;
+function mostrarSeleccion(total) {
+    let seleccionenvio = document.getElementsByName("envio");
+    let envio = 0;
+   
+    for (let i = 0; i < seleccionenvio.length; i++) {
+        if (seleccionenvio[i].checked) {            
+              envio = total * seleccionenvio[i].value;
+        }
+    }
+    return envio;
 }

@@ -200,11 +200,6 @@ a.custom-card:hover {
 p{
   text-align: left;
 }
-
-#nombre{
-  width: 500px;
-}
-
 .img{
   border: solid #c0c2c4 1px;
   border-radius: 5px;
@@ -244,6 +239,9 @@ i{
 
 #divTitulo{
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .table td{
@@ -263,3 +261,12 @@ i{
   text-align: left;
   padding-left: 0;
   }
+
+#comprar{
+  align-self: flex-end;
+  position: absolute;
+}
+
+#nombre{
+  align-self: flex-start;
+}
