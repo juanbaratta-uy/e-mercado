@@ -55,3 +55,31 @@ function mostrarSeleccion(total) {
     }
     return envio;
 }
+
+function metodoDePago(){
+    let metodo = document.getElementsByName("pago");
+    let inputTarjeta = document.getElementsByClassName("inputTarjeta");
+    let inputTransferencia = document.getElementById('inputTransferencia');
+    let valor;
+
+    for (let i = 0; i < metodo.length; i++) {
+        if (metodo[i].checked) {            
+              valor = metodo[i].value
+        }
+    }
+
+    if(valor === 'tarjeta'){
+        for(let i = 0; i < inputTarjeta.length; i++){
+            inputTarjeta[i].setAttribute("disabled", "");
+        }
+        inputTransferencia.removeAttribute("disabled");
+    }
+    else{
+        inputTransferencia.setAttribute("disabled", "");
+        for(let i = 0; i < inputTarjeta.length; i++){
+            inputTarjeta[i].removeAttribute("disabled");
+        }
+    }
+
+
+}

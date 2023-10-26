@@ -157,14 +157,13 @@
         <hr />
         <div>
           <h2>Forma de pago</h2>
-          <button
-            type="button"
-            class="btn btn-primary"
+          <a
+            href="#"
             data-bs-toggle="modal"
             data-bs-target="#Modal"
           >
             Seleccionar
-          </button>
+          </a>
           <div
             class="modal fade"
             id="Modal"
@@ -186,30 +185,31 @@
                   ></button>
                 </div>
                 <div class="modal-body">
-                  <input type="radio" name="" id="" value="" />
+                  <input type="radio" name="pago" value="tarjeta" onclick="metodoDePago()"/>
                   Tarjeta de credito
                   <hr />
                   <div class="row">
                     <div class="col-8">
                       <p>Numero de tarjeta</p>
-                      <input type="text" class="form-control" />
+                      <input type="text" class="form-control inputTarjeta" />
                     </div>
                     <div class="col-4">
                       <p>Codigo de seg.</p>
-                      <input type="text" class="form-control" />
+                      <input type="text" class="form-control inputTarjeta" />
                     </div>
                     <div class="col-8">
                       <p>Vencimiento (MM/AA)</p>
-                      <input type="date" class="form-control" />
+                      <input type="date" class="form-control inputTarjeta" />
                     </div>
                   </div>
-                  <input type="radio" name="" id="" value="" />
+                  <br>
+                  <input type="radio" name="pago" value="transferencia" onclick="metodoDePago()"/>
                   Transferencia bancaria
                   <hr>
                   <div class="row">
                     <div class="col-8">
                       <p>Numero de cuenta</p>
-                      <input type="text" class="form-control" />
+                      <input type="text" class="form-control" id="inputTransferencia" />
                     </div>
                   </div>
                 </div>
@@ -221,6 +221,12 @@
               </div>
             </div>
           </div>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div>
+          <button class="btn btn-primary w-25">Finalizar Compra</button>
         </div>
       </div>
     </main>
