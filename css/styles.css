@@ -270,3 +270,7 @@ i{
 #nombre{
   align-self: flex-start;
 }
+
+.fa-trash:hover{
+  cursor: pointer;
+}

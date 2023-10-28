@@ -87,9 +87,11 @@
               <th>Costo</th>
               <th>Cantidad</th>
               <th>Subtotal</th>
+              <th></th>
             </tr>
           </table>
         </div>
+        <form class="needs-validation" onsubmit="return false" id="myForm" novalidate>
         <div id="tipodeenvio">
           <h2>Tipo de envío</h2>
           <input
@@ -116,14 +118,24 @@
             id="enviostandar"
             value="0.05"
             onclick="recalcular()"
+            checked
           />
           Standard 12 a 15 dias (5%) <br /><br />
         </div>
         <div id="datosdeenvio">
           <h2>Dirección de envío</h2>
-          <input type="text" id="calle" placeholder="Calle" />
-          <input type="text" id="numero" placeholder="Numero" />
-          <input type="text" id="esquina" placeholder="Esquina" />
+          <input type="text" id="calle" placeholder="Calle" required/>
+          <div class="invalid-feedback">
+            Se debe completar el campo.
+          </div>
+          <input type="text" id="numero" placeholder="Numero" required/>
+          <div class="invalid-feedback">
+            Se debe completar el campo.
+          </div>
+          <input type="text" id="esquina" placeholder="Esquina" required/>
+          <div class="invalid-feedback">
+            Se debe completar el campo.
+          </div>
         </div>
         <h2>Costos</h2>
         <div class="list-group container col-8">
@@ -185,31 +197,31 @@
                   ></button>
                 </div>
                 <div class="modal-body">
-                  <input type="radio" name="pago" value="tarjeta" onclick="metodoDePago()"/>
+                  <input type="radio" name="pago" value="tarjeta" onclick="metodoDePago()" required/>
                   Tarjeta de credito
                   <hr />
                   <div class="row">
                     <div class="col-8">
                       <p>Numero de tarjeta</p>
-                      <input type="text" class="form-control inputTarjeta" />
+                      <input type="text" class="form-control inputTarjeta" required/>
                     </div>
                     <div class="col-4">
                       <p>Codigo de seg.</p>
-                      <input type="text" class="form-control inputTarjeta" />
+                      <input type="text" class="form-control inputTarjeta" required/>
                     </div>
                     <div class="col-8">
                       <p>Vencimiento (MM/AA)</p>
-                      <input type="date" class="form-control inputTarjeta" />
+                      <input type="date" class="form-control inputTarjeta" required/>
                     </div>
                   </div>
                   <br>
-                  <input type="radio" name="pago" value="transferencia" onclick="metodoDePago()"/>
+                  <input type="radio" name="pago" value="transferencia" onclick="metodoDePago()" required/>
                   Transferencia bancaria
                   <hr>
                   <div class="row">
                     <div class="col-8">
                       <p>Numero de cuenta</p>
-                      <input type="text" class="form-control" id="inputTransferencia" />
+                      <input type="text" class="form-control" id="inputTransferencia" required/>
                     </div>
                   </div>
                 </div>
@@ -226,8 +238,12 @@
         <hr>
         <br>
         <div>
-          <button class="btn btn-primary w-25">Finalizar Compra</button>
+          <button type="submit" class="btn btn-primary w-25">Finalizar Compra</button>
         </div>
+        <div class="alert alert-success" role="alert" id="successAlert" style="display: none;">
+          !Has comprado con éxito!
+        </div>
+      </form>
       </div>
     </main>
     <footer class="text-muted">

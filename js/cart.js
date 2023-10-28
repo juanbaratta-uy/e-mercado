@@ -2,9 +2,9 @@ let DATA_URL = 'https://japceibal.github.io/emercado-api/user_cart/25801.json';
 let cantidades = document.getElementsByClassName('cantidades');
 let precios = document.getElementsByClassName('precios');
 let resultados = document.getElementsByClassName('resultados');
+let dataArray = JSON.parse(localStorage.getItem('Carrito'));
 
 document.addEventListener('DOMContentLoaded', function (){
-    let dataArray = JSON.parse(localStorage.getItem('Carrito'));
     let usuario = localStorage.getItem('user');
     if (usuario=="" || usuario==null){
      location.href="login.html";
@@ -31,17 +31,19 @@ document.getElementById('envio').innerHTML = `USD ${envio.toFixed(0)}`;
 document.getElementById('total').innerHTML = `USD ${final.toFixed(0)}`;
 };
 
-function showData(data){
+function showData(dataArray){
     let tabla = document.getElementById('tabla-articulos');
-    for (const item of data) {
+    for (const item of dataArray) {
     tabla.innerHTML += `<tr>
     <td><img src='${item.images[0]}' width='75px'></td>
-    <td><span>${item.name}</span></td>
+    <td><span id="${item.name}">${item.name}</span></td>
     <td>${item.currency} <span class='precios'>${item.cost}</span></td>
-    <td><input type='number' placeholder='1' min='0' value='1' class='cantidades' onchange='recalcular()'></td>
+    <td><input type='number' placeholder='1' min='1' value='1' class='cantidades' onchange='recalcular()'></td>
     <td><span class='resultados'></span></td>
+    <td><span class="fa fa-trash" style="color: #e61d0f;" onclick="borrar(${dataArray.indexOf(item)})"></span></td>
     </tr>`; 
     }
+    
 }
 
 function mostrarSeleccion(total) {
@@ -70,16 +72,54 @@ function metodoDePago(){
 
     if(valor === 'tarjeta'){
         for(let i = 0; i < inputTarjeta.length; i++){
-            inputTarjeta[i].setAttribute("disabled", "");
+            inputTarjeta[i].removeAttribute("disabled", "");
+            
         }
-        inputTransferencia.removeAttribute("disabled");
+        inputTransferencia.setAttribute("disabled", "enable");
     }
     else{
-        inputTransferencia.setAttribute("disabled", "");
+        inputTransferencia.removeAttribute("disabled", "");
         for(let i = 0; i < inputTarjeta.length; i++){
-            inputTarjeta[i].removeAttribute("disabled");
+            inputTarjeta[i].setAttribute("disabled", "enable");
         }
     }
 
-
 }
+
+function borrar(item){
+    let tabla = document.getElementById('tabla-articulos');
+    dataArray.splice(item,1);
+
+    tabla.innerHTML = `<tr>
+    <th></th>
+    <th>Nombre</th>
+    <th>Costo</th>
+    <th>Cantidad</th>
+    <th>Subtotal</th>
+    <th></th>
+  </tr>`
+  
+    showData(dataArray);
+    recalcular();
+}
+
+
+(function () {
+    'use strict'
+    let forms = document.querySelectorAll('.needs-validation')
+    let alert = document.getElementById("successAlert");
+
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity()) {
+                alert.style.display = "block";
+          } else {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+  
+          form.classList.add('was-validated');
+        }, false);
+      });
+  })()
