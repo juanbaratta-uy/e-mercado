@@ -2,28 +2,20 @@ let DATA_URL = "https://japceibal.github.io/emercado-api/products/"+localStorage
 let DATA_COMMENTS = "https://japceibal.github.io/emercado-api/products_comments/"+localStorage.getItem("ProID")+".json";
 let PRODUCTS = "https://japceibal.github.io/emercado-api/cats_products/"+localStorage.getItem("catID")+".json";
 
-function showData(data) {
-    document.getElementById('nombre').innerHTML = data.name;
-    document.getElementById('precio').innerHTML = data.currency + " " + data.cost;
-    document.getElementById('descripcion').innerHTML = data.description;
-    document.getElementById('categoria').innerHTML = data.category;
-    document.getElementById('vendidos').innerHTML = data.soldCount;
-    document.getElementById('img1').src = data.images[0];
-    document.getElementById('img2').src = data.images[1];
-    document.getElementById('img3').src = data.images[2];
-    document.getElementById('img4').src = data.images[3];
-    }
-
 document.addEventListener('DOMContentLoaded', function (){
-    let cajaComentarios = document.getElementById('cajaComentarios');
     let usuario = localStorage.getItem('user');
-    const toggle = document.getElementById('toggleDark');
+    const btnTema = document.getElementById('toggleDark');
     const body = document.querySelector('body');
     let tema = localStorage.getItem("Theme");
 
-    if (tema = 'bi-moon'){
+    if (tema === 'bi-moon'){
         body.style.background = 'black';
         body.style.color = 'white';
+        btnTema.classList = ('bi-brightness-high-fill');
+    }else{
+        body.style.background = 'white';
+        body.style.color = 'black';
+        btnTema.classList = ('bi-moon');
     }
     
     if (usuario=="" || usuario==null){
@@ -51,18 +43,17 @@ document.addEventListener('DOMContentLoaded', function (){
 
      document.getElementById("displayUsuario").innerHTML = localStorage.getItem("user");
 
-     toggle.addEventListener('click', function(){
+     btnTema.addEventListener('click', function(){
         this.classList.toggle(tema);
         if(tema === 'bi-brightness-high-fill'){
-            this.classList.toggle('bi-moon')
+            this.classList.toggle('bi-moon');
             body.style.background = 'black';
             body.style.color = 'white';
             body.style.transition = '2s';
             localStorage.setItem('Theme', 'bi-moon')
             tema = 'bi-moon';
-
         }else if(tema === 'bi-moon'){
-            this.classList.toggle('bi-brightness-high-fill')
+            this.classList.toggle('bi-brightness-high-fill');
             body.style.background = 'white';
             body.style.color = 'black';
             body.style.transition = '2s';
@@ -71,6 +62,18 @@ document.addEventListener('DOMContentLoaded', function (){
         }
     });
     });
+
+    function showData(data) {
+        document.getElementById('nombre').innerHTML = data.name;
+        document.getElementById('precio').innerHTML = data.currency + " " + data.cost;
+        document.getElementById('descripcion').innerHTML = data.description;
+        document.getElementById('categoria').innerHTML = data.category;
+        document.getElementById('vendidos').innerHTML = data.soldCount;
+        document.getElementById('img1').src = data.images[0];
+        document.getElementById('img2').src = data.images[1];
+        document.getElementById('img3').src = data.images[2];
+        document.getElementById('img4').src = data.images[3];
+        }
 
     function showRelatedProducts(dataArray){
         let proID = localStorage.getItem('ProID').trim();
