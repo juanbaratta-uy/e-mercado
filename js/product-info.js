@@ -43,24 +43,24 @@ document.addEventListener('DOMContentLoaded', function (){
 
      document.getElementById("displayUsuario").innerHTML = localStorage.getItem("user");
 
-     btnTema.addEventListener('click', function(){
-        this.classList.toggle(tema);
-        if(tema === 'bi-brightness-high-fill'){
-            this.classList.toggle('bi-moon');
-            body.style.background = 'black';
-            body.style.color = 'white';
-            body.style.transition = '2s';
-            localStorage.setItem('Theme', 'bi-moon')
-            tema = 'bi-moon';
-        }else if(tema === 'bi-moon'){
-            this.classList.toggle('bi-brightness-high-fill');
-            body.style.background = 'white';
-            body.style.color = 'black';
-            body.style.transition = '2s';
-            localStorage.setItem('Theme', 'bi-brightness-high-fill')
-            tema = 'bi-brightness-high-fill';
-        }
-    });
+         btnTema.addEventListener('click', function(){
+            this.classList.toggle(tema);
+            if(tema === 'bi-brightness-high-fill'){
+                this.classList.toggle('bi-moon');
+                body.style.background = 'black';
+                body.style.color = 'white';
+                body.style.transition = '2s';
+                localStorage.setItem('Theme', 'bi-moon')
+                tema = 'bi-moon';
+            }else if(tema === 'bi-moon'){
+                this.classList.toggle('bi-brightness-high-fill');
+                body.style.background = 'white';
+                body.style.color = 'black';
+                body.style.transition = '2s';
+                localStorage.setItem('Theme', 'bi-brightness-high-fill')
+                tema = 'bi-brightness-high-fill';
+            }
+        });
     });
 
     function showData(data) {

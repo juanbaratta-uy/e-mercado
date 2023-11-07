@@ -87,7 +87,10 @@ function sortAndShowCategories(sortCriteria, categoriesArray){
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
-document.addEventListener("DOMContentLoaded", function(e){
+document.addEventListener("DOMContentLoaded", function(){
+    const btnTema = document.getElementById('toggleDark');
+    const body = document.querySelector('body');
+    let tema = localStorage.getItem("Theme");
     let usuario = localStorage.getItem('user');
             if (usuario=="" || usuario==null){
              location.href="login.html";
@@ -145,6 +148,35 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
 
         showCategoriesList();
+    });
+
+    if (tema === 'bi-moon'){
+        body.style.background = 'black';
+        body.style.color = 'white';
+        btnTema.classList = ('bi-brightness-high-fill');
+    }else{
+        body.style.background = 'white';
+        body.style.color = 'black';
+        btnTema.classList = ('bi-moon');
+    }
+
+    btnTema.addEventListener('click', function(){
+        this.classList.toggle(tema);
+        if(tema === 'bi-brightness-high-fill'){
+            this.classList.toggle('bi-moon');
+            body.style.background = 'black';
+            body.style.color = 'white';
+            body.style.transition = '2s';
+            localStorage.setItem('Theme', 'bi-moon')
+            tema = 'bi-moon';
+        }else if(tema === 'bi-moon'){
+            this.classList.toggle('bi-brightness-high-fill');
+            body.style.background = 'white';
+            body.style.color = 'black';
+            body.style.transition = '2s';
+            localStorage.setItem('Theme', 'bi-brightness-high-fill')
+            tema = 'bi-brightness-high-fill';
+        }
     });
 });
 
