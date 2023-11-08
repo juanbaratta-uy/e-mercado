@@ -61,11 +61,60 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+    <div class="container col-6">
+      <br>
+      <div>
+        <h1>Perfil</h1>
       </div>
-    </div>
+      <br>
+      <hr>
+      <div class="row justify-content-md-center">
+        <div class="col-md-12 order-md-1">
+          <form class="needs-validation" id="user-info" onsubmit="return false" novalidate>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="userFirstName">Primer nombre*</label>
+                <input type="text" class="form-control" id="userFirstName"  name="userFirstName" required>
+                <div class="invalid-feedback">
+                  Ingresa un nombre
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="userSecondName">Segundo nombre</label>
+                <input type="text" class="form-control" id="userSecondName" value="" name="userSecondName">
+            </div>
+              <div class="col-md-6 mb-3">
+               <label for="userFirstSurname">Primer apellido*</label>
+                <input type="text" class="form-control" id="userFirstSurname" value="" name="userFirstSurname" required>
+                <div class="invalid-feedback">
+                  Ingresa un apellido
+               </div>
+               </div>
+              <div class="col-md-6 mb-3">
+              <label for="userSecondSurname">Segundo apellido</label>
+              <input type="text" class="form-control" id="userSecondSurname" value="" name="userSecondSurname">
+             </div>
+             <div class="col-md-6 mb-3">
+              <label for="userEmail">E-mail*</label>
+              <input type="text" class="form-control" id="userEmail" value="" name="userEmail" required>
+              <div class="invalid-feedback">
+                Ingresa un e-mail
+               </div>
+            </div>
+             <div class="col-md-6 mb-3">
+               <label for="userNumber">Telefono</label>
+               <input type="text" class="form-control" id="userNumber" value="" name="userNumber">
+             </div>
+        </div>
+      <br>
+      <br>
+      <hr>
+      <div>
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+      </div>
+        </form>
+      </div>
+    </div> 
   </main>
   <footer class="text-muted">
     <div class="container">
