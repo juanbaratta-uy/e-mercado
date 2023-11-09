@@ -1,8 +1,17 @@
+let usuario = JSON.parse(localStorage.getItem('user'));
+let userFirstName = document.getElementById('userFirstName');
+let userSecondName = document.getElementById('userSecondName');
+let userFirstSurname = document.getElementById('userFirstSurname');
+let userSecondSurname = document.getElementById('userSecondSurname');
+let userEmail = document.getElementById('userEmail');
+let userNumber = document.getElementById('userNumber');
+let user = [];
+
 document.addEventListener('DOMContentLoaded', function (){
-    let usuario = localStorage.getItem('user');
     const btnTema = document.getElementById('toggleDark');
     const body = document.querySelector('body');
     let tema = localStorage.getItem("Theme");
+    
 
     if (usuario=="" || usuario==null){
      location.href="login.html";
@@ -18,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function (){
         btnTema.classList = ('bi-moon');
     }
 
-    document.getElementById("displayUsuario").innerHTML = localStorage.getItem("user");
+    document.getElementById("displayUsuario").innerHTML = usuario[4];
 
     btnTema.addEventListener('click', function(){
         this.classList.toggle(tema);
@@ -38,22 +47,46 @@ document.addEventListener('DOMContentLoaded', function (){
             tema = 'bi-brightness-high-fill';
         }
     });
+
+     preCarga(usuario);
     });
 
-    (function () {
-        'use strict'
-        let forms = document.querySelectorAll('.needs-validation')
-    
-        Array.prototype.slice.call(forms)
-          .forEach(function (form) {
-            form.addEventListener('submit', function (event) {
-              if (form.checkValidity()) {
-              } else {
-                event.preventDefault();
-                event.stopPropagation();
-              }
+    function preCarga(user){
+      userFirstName.value = user[0];
+      userSecondName.value = user[1];
+      userFirstSurname.value = user[2];
+      userSecondSurname.value = user[3];
+      userEmail.value = user[4];
+      userNumber.value = user[5]
       
-              form.classList.add('was-validated');
-            }, false);
-          });
-      })()
+    }
+
+
+    
+
+      function guardarDatos(){
+        (function () {
+          'use strict'
+          let forms = document.querySelectorAll('.needs-validation')
+      
+          Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+              form.addEventListener('submit', function (event) {
+                if (form.checkValidity()) {
+                  user.push(userFirstName.value);
+                  user.push(userSecondName.value);
+                  user.push(userFirstSurname.value);
+                  user.push(userSecondSurname.value);
+                  user.push(userEmail.value);
+                  user.push(userNumber.value);
+                  localStorage.setItem('user', JSON.stringify(user));
+                } else {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }
+        
+                form.classList.add('was-validated');
+              }, false);
+            });
+        })()
+      }
