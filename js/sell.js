@@ -28,17 +28,17 @@ function updateTotalCosts(){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-    let usuario = localStorage.getItem('user');
+    let usuario = JSON.parse(localStorage.getItem('user'));
     const btnTema = document.getElementById('toggleDark');
     const body = document.querySelector('body');
     let tema = localStorage.getItem("Theme");
-    document.getElementById("displayUsuario").innerHTML = localStorage.getItem("user");
-    if (usuario=="" || usuario==null){
+    document.getElementById("displayUsuario").innerHTML = usuario[4];
+    if (usuario[4]=="" || usuario[4]==null){
      location.href="login.html";
     }
 
     if (tema === 'bi-moon'){
-        body.style.background = 'black';
+        body.style.background = '#202124';
         body.style.color = 'white';
         btnTema.classList = ('bi-brightness-high-fill');
     }else{
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         this.classList.toggle(tema);
         if(tema === 'bi-brightness-high-fill'){
             this.classList.toggle('bi-moon');
-            body.style.background = 'black';
+            body.style.background = '#202124';
             body.style.color = 'white';
             body.style.transition = '2s';
             localStorage.setItem('Theme', 'bi-moon')

@@ -5,6 +5,7 @@ let userFirstSurname = document.getElementById('userFirstSurname');
 let userSecondSurname = document.getElementById('userSecondSurname');
 let userEmail = document.getElementById('userEmail');
 let userNumber = document.getElementById('userNumber');
+let userImage = document.getElementById('userImageFile');
 let user = [];
 
 document.addEventListener('DOMContentLoaded', function (){
@@ -18,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function (){
     }
 
     if (tema === 'bi-moon'){
-        body.style.background = 'black';
+        body.style.background = '#202124';
         body.style.color = 'white';
         btnTema.classList = ('bi-brightness-high-fill');
     }else{
@@ -33,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function (){
         this.classList.toggle(tema);
         if(tema === 'bi-brightness-high-fill'){
             this.classList.toggle('bi-moon');
-            body.style.background = 'black';
+            body.style.background = '#202124';
             body.style.color = 'white';
             body.style.transition = '2s';
             localStorage.setItem('Theme', 'bi-moon')
@@ -79,6 +80,7 @@ document.addEventListener('DOMContentLoaded', function (){
                   user.push(userSecondSurname.value);
                   user.push(userEmail.value);
                   user.push(userNumber.value);
+                  user.push(userImage.src);
                   localStorage.setItem('user', JSON.stringify(user));
                 } else {
                   event.preventDefault();

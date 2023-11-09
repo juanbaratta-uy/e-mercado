@@ -12,13 +12,13 @@ document.addEventListener("DOMContentLoaded", function() {
     let container = document.getElementById("container");
     let cajaComentarios = document.getElementById('cajaComentarios');
     let dataArray = [];
-    let usuario = localStorage.getItem('user');
-    if (usuario=="" || usuario==null){
+    let usuario = JSON.parse(localStorage.getItem('user'));
+    if (usuario[4]=="" || usuario[4]==null){
      location.href="login.html";
     }
 
     if (tema === 'bi-moon'){
-        body.style.background = 'black';
+        body.style.background = '#202124';
         body.style.color = 'white';
         btnTema.classList = ('bi-brightness-high-fill');
     }else{
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
         this.classList.toggle(tema);
         if(tema === 'bi-brightness-high-fill'){
             this.classList.toggle('bi-moon');
-            body.style.background = 'black';
+            body.style.background = '#202124';
             body.style.color = 'white';
             body.style.transition = '2s';
             localStorage.setItem('Theme', 'bi-moon')
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       }
 
-      document.getElementById("displayUsuario").innerHTML = localStorage.getItem("user");
+      document.getElementById("displayUsuario").innerHTML = usuario[4];
 
       document.getElementById("rangeFilterCount").addEventListener("click", function(){
         let precioMaximo = document.getElementById('rangeFilterCountMax').value;

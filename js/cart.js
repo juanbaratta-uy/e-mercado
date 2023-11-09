@@ -8,16 +8,16 @@ document.addEventListener('DOMContentLoaded', function (){
     const btnTema = document.getElementById('toggleDark');
     const body = document.querySelector('body');
     let tema = localStorage.getItem("Theme");
-    let usuario = localStorage.getItem('user');
-    if (usuario=="" || usuario==null){
+    let usuario = JSON.parse(localStorage.getItem('user'));
+    if (usuario[4]=="" || usuario[4]==null){
      location.href="login.html";
     }
-    document.getElementById("displayUsuario").innerHTML = localStorage.getItem("user");
+    document.getElementById("displayUsuario").innerHTML = usuario[4];
     showData(dataArray);
     recalcular();
 
     if (tema === 'bi-moon'){
-        body.style.background = 'black';
+        body.style.background = '#202124';
         body.style.color = 'white';
         btnTema.classList = ('bi-brightness-high-fill');
     }else{
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function (){
         this.classList.toggle(tema);
         if(tema === 'bi-brightness-high-fill'){
             this.classList.toggle('bi-moon');
-            body.style.background = 'black';
+            body.style.background = '#202124';
             body.style.color = 'white';
             body.style.transition = '2s';
             localStorage.setItem('Theme', 'bi-moon')

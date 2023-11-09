@@ -3,13 +3,13 @@ let DATA_COMMENTS = "https://japceibal.github.io/emercado-api/products_comments/
 let PRODUCTS = "https://japceibal.github.io/emercado-api/cats_products/"+localStorage.getItem("catID")+".json";
 
 document.addEventListener('DOMContentLoaded', function (){
-    let usuario = localStorage.getItem('user');
+    let usuario = JSON.parse(localStorage.getItem('user'));
     const btnTema = document.getElementById('toggleDark');
     const body = document.querySelector('body');
     let tema = localStorage.getItem("Theme");
 
     if (tema === 'bi-moon'){
-        body.style.background = 'black';
+        body.style.background = '#202124';
         body.style.color = 'white';
         btnTema.classList = ('bi-brightness-high-fill');
     }else{
@@ -18,7 +18,8 @@ document.addEventListener('DOMContentLoaded', function (){
         btnTema.classList = ('bi-moon');
     }
     
-    if (usuario=="" || usuario==null){
+    
+    if (usuario[4]=="" || usuario[4]==null){
      location.href="login.html";
     }
 
@@ -41,13 +42,13 @@ document.addEventListener('DOMContentLoaded', function (){
             showRelatedProducts(productsArray);
         })
 
-     document.getElementById("displayUsuario").innerHTML = localStorage.getItem("user");
+        document.getElementById("displayUsuario").innerHTML = usuario[4];
 
          btnTema.addEventListener('click', function(){
             this.classList.toggle(tema);
             if(tema === 'bi-brightness-high-fill'){
                 this.classList.toggle('bi-moon');
-                body.style.background = 'black';
+                body.style.background = '#202124';
                 body.style.color = 'white';
                 body.style.transition = '2s';
                 localStorage.setItem('Theme', 'bi-moon')
