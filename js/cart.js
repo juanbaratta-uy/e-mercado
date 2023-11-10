@@ -3,6 +3,7 @@ let cantidades = document.getElementsByClassName('cantidades');
 let precios = document.getElementsByClassName('precios');
 let resultados = document.getElementsByClassName('resultados');
 let dataArray = JSON.parse(localStorage.getItem('Carrito'));
+let tabla = document.getElementById('tabla-articulos');
 
 document.addEventListener('DOMContentLoaded', function (){
     const btnTema = document.getElementById('toggleDark');
@@ -19,10 +20,12 @@ document.addEventListener('DOMContentLoaded', function (){
     if (tema === 'bi-moon'){
         body.style.background = '#202124';
         body.style.color = 'white';
+        tabla.style.color = 'white';
         btnTema.classList = ('bi-brightness-high-fill');
     }else{
         body.style.background = 'white';
         body.style.color = 'black';
+        tabla.style.color = 'black';
         btnTema.classList = ('bi-moon');
     }
 
@@ -33,6 +36,8 @@ document.addEventListener('DOMContentLoaded', function (){
             body.style.background = '#202124';
             body.style.color = 'white';
             body.style.transition = '2s';
+            tabla.style.color = 'white';
+            tabla.style.transition = '2s';
             localStorage.setItem('Theme', 'bi-moon')
             tema = 'bi-moon';
         }else if(tema === 'bi-moon'){
@@ -40,6 +45,8 @@ document.addEventListener('DOMContentLoaded', function (){
             body.style.background = 'white';
             body.style.color = 'black';
             body.style.transition = '2s';
+            tabla.style.color = 'black';
+            tabla.style.transition = '2s';
             localStorage.setItem('Theme', 'bi-brightness-high-fill')
             tema = 'bi-brightness-high-fill';
         }
@@ -65,7 +72,6 @@ document.getElementById('total').innerHTML = `USD ${final.toFixed(0)}`;
 };
 
 function showData(dataArray){
-    let tabla = document.getElementById('tabla-articulos');
     for (const item of dataArray) {
     tabla.innerHTML += `<tr>
     <td><img src='${item.images[0]}' width='75px'></td>

@@ -82,7 +82,7 @@
         <h1>Carrito De Compras</h1>
         <h4>Articulos a comprar</h4>
         <div class="table-responsive">
-          <table id="tabla-articulos" class="table">
+          <table id="tabla-articulos" class="table w-75 m-auto">
             <tr>
               <th></th>
               <th>Nombre</th>
@@ -124,19 +124,27 @@
           />
           Standard 12 a 15 dias (5%) <br /><br />
         </div>
-        <div id="datosdeenvio">
-          <h2>Dirección de envío</h2>
-          <input type="text" id="calle" placeholder="Calle" required/>
-          <div class="invalid-feedback">
-            Se debe completar el campo.
-          </div>
-          <input type="text" id="numero" placeholder="Numero" required/>
-          <div class="invalid-feedback">
-            Se debe completar el campo.
-          </div>
-          <input type="text" id="esquina" placeholder="Esquina" required/>
-          <div class="invalid-feedback">
-            Se debe completar el campo.
+        <div id="datosdeenvio" class="row justify-content-md-center w-100">
+          <div class="col-md-12 order-md-1">
+            <h2>Dirección de envío</h2>
+            <div class="col-md-3 mb-3 m-auto">
+              <input type="text" id="calle" placeholder="Calle" class="form-control" required/>
+              <div class="invalid-feedback">
+                Se debe completar el campo.
+              </div>
+            </div>
+            <div class="col-md-3 mb-3 m-auto">
+              <input type="text" id="numero" placeholder="Numero" class="form-control" required/>
+              <div class="invalid-feedback">
+                Se debe completar el campo.
+              </div>
+            </div>
+            <div class="col-md-3 mb-3 m-auto">
+              <input type="text" id="esquina" placeholder="Esquina" class="form-control" required/>
+              <div class="invalid-feedback">
+                Se debe completar el campo.
+              </div>
+            </div>
           </div>
         </div>
         <h2>Costos</h2>
@@ -240,7 +248,7 @@
         <hr>
         <br>
         <div>
-          <button type="submit" class="btn btn-primary w-25">Finalizar Compra</button>
+          <button type="submit" class="btn btn-primary col-md-2 col-sm-10">Finalizar Compra</button>
         </div>
         <div class="alert alert-success" role="alert" id="successAlert" style="display: none;">
           !Has comprado con éxito!
