@@ -6,6 +6,7 @@ let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 
+
 function sortCategories(criteria, array){
     let result = [];
     if (criteria === ORDER_ASC_BY_NAME)
@@ -66,9 +67,9 @@ function showCategoriesList(){
             </div>
             `
         }
-
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
     }
+    comprobarTema()
 }
 
 function sortAndShowCategories(sortCriteria, categoriesArray){
@@ -88,6 +89,7 @@ function sortAndShowCategories(sortCriteria, categoriesArray){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(){
+    const container = document.getElementsByClassName('list-group-item');
     const btnTema = document.getElementById('toggleDark');
     const body = document.querySelector('body');
     let tema = localStorage.getItem("Theme");
@@ -150,16 +152,6 @@ document.addEventListener("DOMContentLoaded", function(){
         showCategoriesList();
     });
 
-    if (tema === 'bi-moon'){
-        body.style.background = '#202124';
-        body.style.color = 'white';
-        btnTema.classList = ('bi-brightness-high-fill');
-    }else{
-        body.style.background = 'white';
-        body.style.color = 'black';
-        btnTema.classList = ('bi-moon');
-    }
-
     btnTema.addEventListener('click', function(){
         this.classList.toggle(tema);
         if(tema === 'bi-brightness-high-fill'){
@@ -178,11 +170,38 @@ document.addEventListener("DOMContentLoaded", function(){
             tema = 'bi-brightness-high-fill';
         }
     });
+
+
 });
 
-document.addEventListener('DOMContentLoaded', function (){
-    let usuario = localStorage.getItem('user');
-    if (usuario=="" || usuario==null){
-     location.href="login.html";
+function comprobarTema(){
+    const container = document.getElementsByClassName('list-group-item');
+    const body = document.querySelector('body');
+    let tema = localStorage.getItem("Theme");
+    if (tema === 'bi-moon') {
+        body.style.background = '#202124';
+        body.style.color = 'white';
+
+        for (let i = 0; i < container.length; i++) {
+            let element = container[i];
+            element.style.background = '#2b2c30';
+            element.style.color = 'white';
+            
+        }
+
+    } else {
+        body.style.background = 'white';
+        body.style.color = 'black';
+
+        for (let i = 0; i < container.length; i++) {
+            let element = container[i];
+            element.style.color = 'black'
+            element.style.background = 'white'
+        }
+
     }
-})
+
+
+}
+
+
