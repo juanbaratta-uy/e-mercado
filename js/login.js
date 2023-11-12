@@ -1,11 +1,16 @@
 document.addEventListener("DOMContentLoaded", comprobar);
     
     function comprobar (){
-        let usuario = document.getElementById("username").value;
+        let email = document.getElementById("email").value;
         let clave = document.getElementById("password").value;
+        let usuario = ['', '', '', ''];
+        usuario.push(email);
+        usuario.push('');
+        usuario.push('');
 
-        if ((usuario !== "") && (clave !== "")) {
+        if ((email !== "") && (clave !== "")) {
             window.location.href = "index.html";
-            localStorage.setItem('user',usuario);
+            localStorage.setItem('user',JSON.stringify(usuario));
         }
     }
+        

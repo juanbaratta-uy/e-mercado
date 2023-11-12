@@ -5,14 +5,14 @@ let userFirstSurname = document.getElementById('userFirstSurname');
 let userSecondSurname = document.getElementById('userSecondSurname');
 let userEmail = document.getElementById('userEmail');
 let userNumber = document.getElementById('userNumber');
-let userImage = document.getElementById('userImageFile');
+let userImage = document.getElementById('userImage');
 let user = [];
+let imageData;
 
 document.addEventListener('DOMContentLoaded', function (){
     const btnTema = document.getElementById('toggleDark');
     const body = document.querySelector('body');
     let tema = localStorage.getItem("Theme");
-    
 
     if (usuario=="" || usuario==null){
      location.href="login.html";
@@ -53,42 +53,62 @@ document.addEventListener('DOMContentLoaded', function (){
     });
 
     function preCarga(user){
+      if(!(usuario[6] === null || usuario[6] === undefined)){
+        userImage.src = `data:image/png;base64,${usuario[6]}`
+      }
+
       userFirstName.value = user[0];
       userSecondName.value = user[1];
       userFirstSurname.value = user[2];
       userSecondSurname.value = user[3];
       userEmail.value = user[4];
-      userNumber.value = user[5]
-      
+      userNumber.value = user[5]  
     }
 
-
-    
-
       function guardarDatos(){
-        (function () {
-          'use strict'
-          let forms = document.querySelectorAll('.needs-validation')
-      
-          Array.prototype.slice.call(forms)
-            .forEach(function (form) {
-              form.addEventListener('submit', function (event) {
-                if (form.checkValidity()) {
-                  user.push(userFirstName.value);
-                  user.push(userSecondName.value);
-                  user.push(userFirstSurname.value);
-                  user.push(userSecondSurname.value);
-                  user.push(userEmail.value);
-                  user.push(userNumber.value);
-                  user.push(userImage.src);
-                  localStorage.setItem('user', JSON.stringify(user));
-                } else {
-                  event.preventDefault();
-                  event.stopPropagation();
-                }
-        
-                form.classList.add('was-validated');
-              }, false);
-            });
-        })()
+        convertirABase64();
+              (function () {
+                'use strict'
+                let forms = document.querySelectorAll('.needs-validation')
+            
+                Array.prototype.slice.call(forms)
+                  .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                      if (form.checkValidity()) {
+                        user = [];
+                        user.push(userFirstName.value);
+                        user.push(userSecondName.value);
+                        user.push(userFirstSurname.value);
+                        user.push(userSecondSurname.value);
+                        user.push(userEmail.value);
+                        user.push(userNumber.value);
+                        user.push(imageData);
+                        localStorage.setItem('user', JSON.stringify(user));
+                      } else {
+                        event.preventDefault();
+                        event.stopPropagation();
+                      }
+              
+                      form.classList.add('was-validated');
+                    }, false);
+                  });
+              })()  
       }
+
+      function convertirABase64() {
+        const inputFile = document.getElementById('userImageFile');
+        const archivo = inputFile.files[0];
+    
+        if (archivo) {
+            const lector = new FileReader();
+            lector.onload = function (e) {
+                const base64 = e.target.result.split(',')[1];
+                imageData = base64;
+            };
+    
+            lector.readAsDataURL(archivo); 
+        }
+    }
+    
+  
+    
