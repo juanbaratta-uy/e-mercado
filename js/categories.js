@@ -154,11 +154,21 @@ document.addEventListener("DOMContentLoaded", function(){
 
     btnTema.addEventListener('click', function(){
         this.classList.toggle(tema);
+        const container = document.getElementsByClassName('list-group-item');
         if(tema === 'bi-brightness-high-fill'){
             this.classList.toggle('bi-moon');
             body.style.background = '#202124';
             body.style.color = 'white';
             body.style.transition = '2s';
+
+            for (let i = 0; i < container.length; i++) {
+                let element = container[i];
+                element.style.background = '#2b2c30';
+                element.style.color = 'white';
+                element.style.transition = '2s';
+                
+            }
+
             localStorage.setItem('Theme', 'bi-moon')
             tema = 'bi-moon';
         }else if(tema === 'bi-moon'){
@@ -166,6 +176,14 @@ document.addEventListener("DOMContentLoaded", function(){
             body.style.background = 'white';
             body.style.color = 'black';
             body.style.transition = '2s';
+
+            for (let i = 0; i < container.length; i++) {
+                let element = container[i];
+                element.style.color = 'black'
+                element.style.background = 'white'
+                element.style.transition = '2s';
+            }
+
             localStorage.setItem('Theme', 'bi-brightness-high-fill')
             tema = 'bi-brightness-high-fill';
         }

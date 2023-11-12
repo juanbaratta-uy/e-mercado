@@ -4,9 +4,14 @@ document.addEventListener("DOMContentLoaded", function(){
     const tarjetaAutos = document.getElementById('autos');
     const tarjetaJuguetes = document.getElementById('juguetes');
     const tarjetaMuebles = document.getElementById('muebles');
+    let album = document.getElementById('album');
+    let jumbotron = document.getElementById('jumbotron');
     let tema = localStorage.getItem("Theme");
 
     if (tema === 'bi-moon'){
+        jumbotron.style.filter = 'invert(0.9)';
+        album.style.trasition = '2s';
+        album.style.background = '#1f1e1d'
         body.style.background = '#202124';
         body.style.color = 'white';
         tarjetaAutos.style.background = '#202124';
@@ -14,6 +19,9 @@ document.addEventListener("DOMContentLoaded", function(){
         tarjetaMuebles.style.background = '#202124';
         btnTema.classList = ('bi-brightness-high-fill');
     }else{
+        jumbotron.style.filter = 'invert(0)';
+        album.style.trasition = '2s';
+        album.style.background = '#f8f9fa';
         body.style.background = 'white';
         body.style.color = 'black';
         tarjetaAutos.style.background = 'white';
@@ -26,6 +34,9 @@ document.addEventListener("DOMContentLoaded", function(){
         this.classList.toggle(tema);
         if(tema === 'bi-brightness-high-fill'){
             this.classList.toggle('bi-moon');
+            jumbotron.style.filter = 'invert(0.9)';
+            album.style.trasition = '2s';
+            album.style.background = '#1f1e1d'
             body.style.background = '#202124';
             body.style.color = 'white';
             body.style.transition = '2s';
@@ -36,10 +47,13 @@ document.addEventListener("DOMContentLoaded", function(){
             tarjetaJuguetes.style.transition = '2s';
             tarjetaMuebles.style.transition = '2s';
             localStorage.setItem('Theme', 'bi-moon');
-            
             tema = 'bi-moon';
+
         }else if(tema === 'bi-moon'){
             this.classList.toggle('bi-brightness-high-fill');
+            jumbotron.style.filter = 'invert(0)';
+            album.style.trasition = '2s';
+            album.style.background = '#f8f9fa';
             body.style.background = 'white';
             body.style.color = 'black';
             body.style.transition = '2s';
