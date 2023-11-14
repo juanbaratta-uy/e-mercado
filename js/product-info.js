@@ -176,16 +176,16 @@ function comprarProducto(){
         .then(response => response.json())
         .then(data => { 
             localStorage.setItem('Carrito', JSON.stringify([data])); 
+            window.location = "cart.html";
         });
-        window.location = "cart.html";
-    } else {
+    } else{
         let Carrito = JSON.parse(localStorage.getItem('Carrito')); 
         fetch(DATA_URL)
         .then(response => response.json())
         .then(data => { 
             Carrito.push(data); 
-            localStorage.setItem('Carrito', JSON.stringify(Carrito)); 
+            localStorage.setItem('Carrito', JSON.stringify(Carrito));
+            window.location = "cart.html";
         });
-        window.location = "cart.html";
     }
-}
+};
