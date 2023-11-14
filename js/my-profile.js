@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function (){
     });
 
     function preCarga(user){
-      if(usuario[6] === null || usuario[6] === undefined){
+      if(!(usuario[6] === null || usuario[6] === undefined)){
         userImage.src = `data:image/png;base64,${usuario[6]}`
       }
 
