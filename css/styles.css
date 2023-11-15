@@ -233,10 +233,6 @@ i{
   left:40%;
 }
 
-.container-carrito{
-  text-align: center;
-}
-
 #divTitulo{
   display: flex;
   flex-direction: column;
@@ -246,6 +242,10 @@ i{
 
 .table td{
   border-bottom: 1px solid black;
+}
+
+.form-check-inline{
+  margin-left: 25px;
 }
 
 .table input{
