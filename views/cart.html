@@ -54,7 +54,7 @@
                 ></button>
                 <ul class="dropdown-menu" aria-labelledby="displayUsuario">
                   <li>
-                    <a class="dropdown-item" href="cart.html">Mi carrito</a>
+                    <a class="dropdown-item" href="#" onclick="verificarAcceso()">Mi carrito</a>
                   </li>
                   <li>
                     <a class="dropdown-item" href="my-profile.html"
@@ -65,7 +65,7 @@
                     <a
                       class="dropdown-item"
                       href="login.html"
-                      onclick="logout()"
+                      onclick="localStorage.clear()"
                       >Cerrar sesión</a
                     >
                   </li>
