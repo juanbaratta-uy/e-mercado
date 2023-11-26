@@ -8,7 +8,6 @@ let tabla = document.getElementById('tabla-articulos');
 document.addEventListener('DOMContentLoaded', function (){
     const btnTema = document.getElementById('toggleDark');
     const body = document.querySelector('body');
-    const footer = document.getElementById('footer');
     let tema = localStorage.getItem("Theme");
     let usuario = JSON.parse(localStorage.getItem('user'));
     if (usuario[4]=="" || usuario[4]==null){
@@ -21,15 +20,11 @@ document.addEventListener('DOMContentLoaded', function (){
     if (tema === 'bi-moon'){
         body.style.background = '#202124';
         body.style.color = 'white';
-        footer.style.transition = '2s';
-        footer.style.background = '#212529';
         tabla.style.color = 'white';
         btnTema.classList = ('bi-brightness-high-fill');
     }else{
         body.style.background = 'white';
         body.style.color = 'black';
-        footer.style.transition = '2s';
-        footer.style.background = 'white';
         tabla.style.color = 'black';
         btnTema.classList = ('bi-moon');
     }
@@ -41,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function (){
             body.style.background = '#202124';
             body.style.color = 'white';
             body.style.transition = '2s';
-            footer.style.background = '#212529';
             tabla.style.color = 'white';
             tabla.style.transition = '2s';
             localStorage.setItem('Theme', 'bi-moon')
@@ -51,7 +45,6 @@ document.addEventListener('DOMContentLoaded', function (){
             body.style.background = 'white';
             body.style.color = 'black';
             body.style.transition = '2s';
-            footer.style.background = 'white';
             tabla.style.color = 'black';
             tabla.style.transition = '2s';
             localStorage.setItem('Theme', 'bi-brightness-high-fill')
@@ -84,7 +77,7 @@ function showData(dataArray){
     <td><img src='${item.images[0]}' width='75px'></td>
     <td><span id="${item.name}">${item.name}</span></td>
     <td>${item.currency} <span class='precios'>${item.cost}</span></td>
-    <td width='75px'><input type='number' placeholder='1' min='1' value='1' class='form-control cantidades' onchange='recalcular()'></td>
+    <td><input type='number' placeholder='1' min='1' value='1' class='cantidades' onchange='recalcular()'></td>
     <td><span class='resultados'></span></td>
     <td><span class="fa fa-trash" style="color: #e61d0f;" onclick="borrar(${dataArray.indexOf(item)})"></span></td>
     </tr>`; 
@@ -169,5 +162,3 @@ function borrar(item){
         }, false);
       });
   })()
-
-

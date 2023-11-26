@@ -176,73 +176,16 @@ function comprarProducto(){
         .then(response => response.json())
         .then(data => { 
             localStorage.setItem('Carrito', JSON.stringify([data])); 
-            const token = localStorage.getItem('token');
-            // Enviar el token con la solicitud utilizando Fetch API o cualquier otra biblioteca
-            fetch('/cart', {
-            method: 'GET',
-            headers: {
-                'Authorization': `${token}`
-            },
-            })
-            .then(response => response.json())
-                .then(data => {
-                    console.log(data)
-                    window.location = "cart.html"
-                })
-                .catch(error => {
-                    console.error('Error:', error)
-                    alert('El token ya no es valido. por favor vuelva a iniciar sesion')
-                })
         });
-    } else{
+        window.location = "cart.html";
+    } else {
         let Carrito = JSON.parse(localStorage.getItem('Carrito')); 
         fetch(DATA_URL)
         .then(response => response.json())
         .then(data => { 
-            const token = localStorage.getItem('token');
-            fetch('/cart', {
-                method: 'GET',
-                headers: {
-                    'Authorization': `${token}`
-                },
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data)
-                    window.location = "cart.html"
-                })
-                .catch(error => {
-                    console.error('Error:', error)
-                    alert('El token ya no es valido. por favor vuelva a iniciar sesion')
-                })
-
             Carrito.push(data); 
-            localStorage.setItem('Carrito', JSON.stringify(Carrito));
+            localStorage.setItem('Carrito', JSON.stringify(Carrito)); 
         });
+        window.location = "cart.html";
     }
-};
-
-function verificarAcceso(){
-    const token = localStorage.getItem('token');
-            fetch('/cart', {
-                method: 'GET',
-                headers: {
-                    'Authorization': `${token}`
-                },
-                })
-                .then(response => {
-                    if(response.ok){
-                        response.json()
-                    }else{
-                        throw new Error();
-                    }
-                })
-                .then(data => {
-                    console.log(data)
-                    window.location = "cart.html"
-                })
-                .catch(error => {
-                    console.error('Error:', error)
-                    alert('El token ya no es valido. por favor vuelva a iniciar sesion')
-                })
 }

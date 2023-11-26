@@ -54,7 +54,7 @@
                 ></button>
                 <ul class="dropdown-menu" aria-labelledby="displayUsuario">
                   <li>
-                    <a class="dropdown-item" href="#" onclick="verificarAcceso()">Mi carrito</a>
+                    <a class="dropdown-item" href="cart.html">Mi carrito</a>
                   </li>
                   <li>
                     <a class="dropdown-item" href="my-profile.html"
@@ -65,7 +65,7 @@
                     <a
                       class="dropdown-item"
                       href="login.html"
-                      onclick="localStorage.clear()"
+                      onclick="logout()"
                       >Cerrar sesión</a
                     >
                   </li>
@@ -78,12 +78,11 @@
       </div>
     </nav>
     <main>
-      <div class="container text-center">
+      <div class="container-carrito">
         <h1>Carrito De Compras</h1>
         <h4>Articulos a comprar</h4>
-        <br>
-        <div>
-          <table id="tabla-articulos" class="table-responsive table-bordered w-100 m-auto">
+        <div class="table-responsive">
+          <table id="tabla-articulos" class="table w-75 m-auto">
             <tr>
               <th></th>
               <th>Nombre</th>
@@ -94,53 +93,36 @@
             </tr>
           </table>
         </div>
-        <br>
-        <br>
         <form class="needs-validation" onsubmit="return false" id="myForm" novalidate>
         <div id="tipodeenvio">
           <h2>Tipo de envío</h2>
-          <div class="form-check form-check-inline">
-            <input
-              type="radio"
-              name="envio"
-              class="form-check-input"
-              id="enviopremium"
-              value="0.15"
-              onclick="recalcular()"
-            />
-            <label class="form-check-label" for="envio">
-              Premium 2 a 5 dias (15%)
-            </label>
-          </div>
-            <div class="form-check form-check-inline">
-            <input
-              type="radio"
-              name="envio"
-              class="form-check-input"
-              id="envioexpress"
-              value="0.07"
-              onclick="recalcular()"
-            />
-            <label class="form-check-label" for="envio">
-              Express 5 a 8 dias (7%)
-            </label>
-          </div>
-            <div class="form-check form-check-inline">
-            <input
-              type="radio"
-              name="envio"
-              class="form-check-input"
-              id="enviostandar"
-              value="0.05"
-              onclick="recalcular()"
-              checked
-            />
-            <label class="form-check-label" for="envio">
-              Standard 12 a 15 dias (5%)
-            </label>
-          </div>
+          <input
+            type="radio"
+            name="envio"
+            id="enviopremium"
+            value="0.15"
+            onclick="recalcular()"
+          />
+          Premium 2 a 5 dias (15%)
           <br />
+          <input
+            type="radio"
+            name="envio"
+            id="envioexpress"
+            value="0.07"
+            onclick="recalcular()"
+          />
+          Express 5 a 8 dias (7%)
           <br />
+          <input
+            type="radio"
+            name="envio"
+            id="enviostandar"
+            value="0.05"
+            onclick="recalcular()"
+            checked
+          />
+          Standard 12 a 15 dias (5%) <br /><br />
         </div>
         <div id="datosdeenvio" class="row justify-content-md-center w-100">
           <div class="col-md-12 order-md-1">
@@ -274,9 +256,7 @@
       </form>
       </div>
     </main>
-    <br>
-    <br>
-    <footer class="text-muted" id="footer">
+    <footer class="text-muted">
       <div class="container">
         <p class="float-end">
           <a href="#">Volver arriba</a>

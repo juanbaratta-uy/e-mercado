@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function (){
     });
 
     function preCarga(user){
-      if(!(usuario[6] === null || usuario[6] === undefined)){
+      if(usuario[6] === null || usuario[6] === undefined){
         userImage.src = `data:image/png;base64,${usuario[6]}`
       }
 
@@ -110,29 +110,5 @@ document.addEventListener('DOMContentLoaded', function (){
         }
     }
     
-    function verificarAcceso(){
-      const token = localStorage.getItem('token');
-              fetch('/cart', {
-                  method: 'GET',
-                  headers: {
-                      'Authorization': `${token}`
-                  },
-                  })
-                  .then(response => {
-                      if(response.ok){
-                          response.json()
-                      }else{
-                          throw new Error();
-                      }
-                  })
-                  .then(data => {
-                      console.log(data)
-                      window.location = "cart.html"
-                  })
-                  .catch(error => {
-                      console.error('Error:', error)
-                      alert('El token ya no es valido. por favor vuelva a iniciar sesion')
-                  })
-  }
   
     

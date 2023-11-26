@@ -17,23 +17,23 @@ document.addEventListener("DOMContentLoaded", function() {
      location.href="login.html";
     }
 
+    if (tema === 'bi-moon'){
+        body.style.background = '#202124';
+        body.style.color = 'white';
+        btnTema.classList = ('bi-brightness-high-fill');
+    }else{
+        body.style.background = 'white';
+        body.style.color = 'black';
+        btnTema.classList = ('bi-moon');
+    }
+
     btnTema.addEventListener('click', function(){
         this.classList.toggle(tema);
-        const container = document.getElementsByClassName('list-group-item');
         if(tema === 'bi-brightness-high-fill'){
             this.classList.toggle('bi-moon');
             body.style.background = '#202124';
             body.style.color = 'white';
             body.style.transition = '2s';
-
-            for (let i = 0; i < container.length; i++) {
-                let element = container[i];
-                element.style.background = '#2b2c30';
-                element.style.color = 'white';
-                element.style.transition = '2s';
-                
-            }
-
             localStorage.setItem('Theme', 'bi-moon')
             tema = 'bi-moon';
         }else if(tema === 'bi-moon'){
@@ -41,14 +41,6 @@ document.addEventListener("DOMContentLoaded", function() {
             body.style.background = 'white';
             body.style.color = 'black';
             body.style.transition = '2s';
-
-            for (let i = 0; i < container.length; i++) {
-                let element = container[i];
-                element.style.color = 'black'
-                element.style.background = 'white'
-                element.style.transition = '2s';
-            }
-
             localStorage.setItem('Theme', 'bi-brightness-high-fill')
             tema = 'bi-brightness-high-fill';
         }
@@ -122,7 +114,6 @@ document.addEventListener("DOMContentLoaded", function() {
           </div>
       </div>`;
         }
-        comprobarTema()
       }
 
       document.getElementById("displayUsuario").innerHTML = usuario[4];
@@ -170,56 +161,3 @@ document.addEventListener("DOMContentLoaded", function() {
     
 });
 
-function comprobarTema(){
-    const container = document.getElementsByClassName('list-group-item');
-    const body = document.querySelector('body');
-    let tema = localStorage.getItem("Theme");
-    if (tema === 'bi-moon') {
-        body.style.background = '#202124';
-        body.style.color = 'white';
-
-        for (let i = 0; i < container.length; i++) {
-            let element = container[i];
-            element.style.background = '#2b2c30';
-            element.style.color = 'white';
-            
-        }
-
-    } else {
-        body.style.background = 'white';
-        body.style.color = 'black';
-
-        for (let i = 0; i < container.length; i++) {
-            let element = container[i];
-            element.style.color = 'black'
-            element.style.background = 'white'
-        }
-
-    }
-}
-
-
-function verificarAcceso(){
-    const token = localStorage.getItem('token');
-            fetch('/cart', {
-                method: 'GET',
-                headers: {
-                    'Authorization': `${token}`
-                },
-                })
-                .then(response => {
-                    if(response.ok){
-                        response.json()
-                    }else{
-                        throw new Error();
-                    }
-                })
-                .then(data => {
-                    console.log(data)
-                    window.location = "cart.html"
-                })
-                .catch(error => {
-                    console.error('Error:', error)
-                    alert('El token ya no es valido. por favor vuelva a iniciar sesion')
-                })
-}
